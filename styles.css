@@ -1,0 +1,70 @@
+body {
+  background-color: #808b96;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background-color: #e5e8e8;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#grid {
+  width: fit-content;
+  margin: 0px auto;
+}
+
+.fruit  {
+  background-color: #cd6155;
+}
+
+.head {
+  background-color: #34495e;
+}
+
+.body {
+  background-color: #73c6b6;
+}
+
+.buttons-container {
+  width: fit-content;
+  margin: 0px auto;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+}
+
+.left-right {
+  display: flex;
+  gap: 3rem;
+}
+
+.replay-button {
+  width: fit-content;
+  margin: 20px auto;
+  background-color: #6b839b;
+  font-family: 'Verdana', cursive;
+}
+
+.score-panel {
+  font-size: 40px; 
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto; 
+  font-family: 'Verdana', cursive; 
+}
+
+.game-status {
+  font-size: 65px; 
+  text-align: center;
+  margin-top: 20px; 
+  font-family: 'Verdana', cursive;
+}
