@@ -6,15 +6,13 @@ const HEAD_CODE = '@';
 const BODY_CODE = '#';
 const FRAME_RATE = 300;
 let directionX = 0;
-let directionY = 0;
+let directionY = 0; 
 let body = [];
 let fruitEaten = false;
-let isPaused = true;
 let isGameOver = false;
 let timerId;
 
 const gridElement = document.querySelector("#grid");
-
 const grid = getEmptyGrid(WIDTH, HEIGHT, EMPTY_CODE); 
 
 let fruit = getRandomCoordinates(grid);
@@ -39,15 +37,8 @@ document.body.addEventListener("keydown", (event) => {
     } else if (event.key === "ArrowRight" && directionX !== -1) {
         directionY = 0;
         directionX = 1;
-    } else if (event.code === "Space"){
-        isPaused = !isPaused;
-        if (!isPaused) {
-            timerId = setInterval(loop, FRAME_RATE);
-        } else {
-            clearInterval(timerId);
-        }
-    } 
-}) 
+    }
+}); 
 
 document.querySelectorAll("button").forEach(buttonElement => {
     buttonElement.addEventListener("click", event => {
@@ -65,12 +56,11 @@ document.querySelectorAll("button").forEach(buttonElement => {
             directionX = 1;
         }
     })
-})
-document.querySelector('.replay-button').addEventListener('click', restartGame); //adaugata mai sus, dar trebuie schimbata struct HTML
+});
 
+document.querySelector('.replay-button').addEventListener('click', restartGame); 
 
 createPageGrid(grid);
-
 
 function createPageGrid(grid) {
     grid.forEach((row, rowIndex)=> {
@@ -87,16 +77,19 @@ function createPageGrid(grid) {
     console.log(gridElement);
 }
 
+setInterval(loop, FRAME_RATE);
 
 function loop() {
-    clearGrid();
-    moveSnake();
-    redraw();
-    print(grid);
+    if (!isGameOver) {
+        clearGrid();
+        moveSnake();
+        redraw();
+        print(grid);
+    }
 }
 
 function clearGrid() {
-        gridElement.querySelectorAll(".row").forEach(row => {
+    gridElement.querySelectorAll(".row").forEach(row => {
         row.querySelectorAll(".cell").forEach(cell =>{
             cell.classList.remove("head");
             cell.classList.remove("fruit");
@@ -176,7 +169,7 @@ function print(grid) {
     scoreElement.textContent = body.length;
     
     if (isGameOver === false) {
-        console.clear();
+        console.clear(); 
         console.log(grid.map(row => row.join(' ')).join('\n'),`\n\nYour Score: ${body.length}`);
     } else {
         gameStatusElement.textContent = "GAME OVER!";
@@ -212,6 +205,7 @@ function getRandomCoordinates(grid) {
     
     return {row: randRowIndex, col: randColumnIndex};
 } 
+
 
 function getEmptyGrid(width, height, emptyCode) {
     let grid = [];
